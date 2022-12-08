@@ -1,20 +1,74 @@
-﻿// oop_calculator.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
+﻿#include <iostream>
 
-#include <iostream>
+enum operations {
+    plus, minus, mul, divine
+};
+
+float cal(float x, float y, operations op) {
+    switch (op) {
+    case(0):
+        std::cout << "answer: ";
+        return x + y;
+    case(1):
+        std::cout << "answer: ";
+        return x - y;
+    case(2):
+        std::cout << "answer: ";
+        return x * y;
+    case(3):
+        std::cout << "answer: ";
+        return x / y;
+    }
+}
+
+float codecal(float x, float y, short c) {
+    switch (c) {
+    case(0):
+        return cal(x, y, plus);;
+    case(1):
+        return cal(x, y, minus);;
+    case(2):
+        return cal(x, y, mul);;
+    case(3):
+        return cal(x, y, divine);;
+    }
+}
+
 
 int main()
 {
-    std::cout << "Hello World!\n";
+
+    short c;
+    float x, y;
+    bool run = true;
+    while (run) {
+        std::cout << ("\nplease write number of operation\n0.plus\n1.minus\n2.multiplie\n3.divine\n4.exit\n");
+        std::cin >> c;
+        if (std::cin.fail())
+        {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+        }
+        else {
+            if (c == 4) {
+                run = false;
+            }
+            else if (c == 0 || c == 1 || c == 2 || c == 3) {
+                std::cout << ("please write first number\n");
+                std::cin >> x;
+                std::cout << ("please write second number\n");
+                std::cin >> y;
+                std::cout << "\n";
+                std::cout << codecal(x, y, c);
+                std::cout << "\n";
+
+            }
+            else
+            {
+                std::cout << ("incorret operation code!!!\n");
+            }
+
+        }
+    }
 }
-
-// Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
-// Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
-
-// Советы по началу работы 
-//   1. В окне обозревателя решений можно добавлять файлы и управлять ими.
-//   2. В окне Team Explorer можно подключиться к системе управления версиями.
-//   3. В окне "Выходные данные" можно просматривать выходные данные сборки и другие сообщения.
-//   4. В окне "Список ошибок" можно просматривать ошибки.
-//   5. Последовательно выберите пункты меню "Проект" > "Добавить новый элемент", чтобы создать файлы кода, или "Проект" > "Добавить существующий элемент", чтобы добавить в проект существующие файлы кода.
-//   6. Чтобы снова открыть этот проект позже, выберите пункты меню "Файл" > "Открыть" > "Проект" и выберите SLN-файл.
